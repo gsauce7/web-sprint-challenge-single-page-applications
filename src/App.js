@@ -1,37 +1,20 @@
-import React, {useState} from "react"
-import {BrowserRouter as Router } from 'react-router-dom'
-import { Route } from 'react-router-dom'
-import Form from './components/Form'
-import Pizza from './components/Pizza'
-import Navigation from './components/Navigation'
-import './App.css'
+import React from "react";
+import "./App.css";
+import { Route, Switch } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import Home from "./components/Home";
+import PizzaForm from "./components/PizzaForm";
 
-
-const App = () => {
-  const [order, setOrder] = useState([]);
-
+function App() {
   return (
-    <Router>
-    <Navigation />
-  <div>
-    <Route exact path="/">
-      <h1>Lambda Eats</h1>
-      
-      <p>  Are you hungry for delicous pizza? </p>
-      <p> Go ahead and order!</p>
-      </Route>
-
-    <Route path="/components/Form">
-      <Form order={order} setOrder={setOrder} />
-      </Route>
-
-    <Route path="/components/Pizza">
-      <Pizza order={order} />
-      </Route>
-  </div>
-
-  </Router>
-  )
+    <div className="App">
+      <Navigation />
+      <Switch>
+        <Route path="/order/pizza/" component={PizzaForm} />
+        <Route path="/" component={Home} />
+      </Switch>
+    </div>
+  );
 }
 
-export default App; 
+export default App;
